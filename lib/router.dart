@@ -5,8 +5,6 @@ import 'package:tokyo_hakkason2024_app/core/providers/supabase_provider.dart';
 import 'package:tokyo_hakkason2024_app/features/auth/pages/login_page.dart';
 import 'package:tokyo_hakkason2024_app/features/auth/pages/signup_page.dart';
 import 'package:tokyo_hakkason2024_app/features/home/pages/home_page.dart';
-import 'package:tokyo_hakkason2024_app/features/original/pages/entry_page.dart';
-import 'package:tokyo_hakkason2024_app/features/original/pages/original_page.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
@@ -25,7 +23,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         pageBuilder: (context, state) {
           return MaterialPage(
             key: state.pageKey,
-            child: const OriginalPage(),
+            child: const HomePage(),
           );
         },
       ),
@@ -35,7 +33,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         pageBuilder: (context, state) {
           return MaterialPage(
             key: state.pageKey,
-            child: const EntryPage(),
+            child: const LoginPage(),
           );
         },
       ),
