@@ -151,7 +151,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             ),
                           ),
                         ),
-                        const Expanded(child: SizedBox()),
                         CustomButton(
                           width: 225,
                           height: 56,
