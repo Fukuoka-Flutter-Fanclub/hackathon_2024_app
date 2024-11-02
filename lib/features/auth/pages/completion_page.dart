@@ -18,7 +18,7 @@ class CompletionPage extends StatefulWidget {
 
 class _CompletionPageState extends State<CompletionPage> {
   final _focusNode = FocusNode();
-  final bool _isLoading = false;
+  final _isLoading = false;
   String _displayId = '';
 
   @override
