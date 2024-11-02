@@ -10,6 +10,15 @@ class MessagesNotifier extends StateNotifier<List<types.Message>> {
   MessagesNotifier() : super([]);
 
   void addMessage(types.Message message) {
-    state = [...state, message];
+    state = [message, ...state];
+  }
+
+  void updateMessage(types.Message updatedMessage) {
+    state = state.map((message) {
+      if (message.id == updatedMessage.id) {
+        return updatedMessage;
+      }
+      return message;
+    }).toList();
   }
 }

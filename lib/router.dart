@@ -9,7 +9,7 @@ import 'package:tokyo_hakkason2024_app/features/home/pages/home_page.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
-    initialLocation: HomePage.routeName,
+    initialLocation: ChatScreen.routeName,
     redirect: (_, state) {
       if (supabase.auth.currentUser == null &&
           state.matchedLocation == HomePage.routeName) {
@@ -48,7 +48,7 @@ final routerProvider = Provider<GoRouter>((ref) {
           );
         },
       ),
-       GoRoute(
+      GoRoute(
         path: ChatScreen.routeName,
         name: ChatScreen.routeName,
         pageBuilder: (context, state) {

@@ -1,6 +1,7 @@
 import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tokyo_hakkason2024_app/core/providers/flutter_tts_provider.dart';
 import 'package:tokyo_hakkason2024_app/core/providers/open_ai_provider.dart';
 import 'package:tokyo_hakkason2024_app/features/chat/message_provider.dart';
 import 'package:uuid/uuid.dart';
@@ -19,6 +20,8 @@ class ChatController extends AsyncNotifier<void> {
 
   Future<void> sendMessage(
       types.User user, types.User bot, String content) async {
+    final messageId = const Uuid().v4();
+
     // ユーザーメッセージを追加
     final textMessage = types.TextMessage(
       author: user,
@@ -28,14 +31,25 @@ class ChatController extends AsyncNotifier<void> {
     );
     ref.read(messagesProvider.notifier).addMessage(textMessage);
 
-    // 状態を loading に設定
+    // ボットの仮メッセージを作成
+    final botMessage = types.TextMessage(
+      author: bot,
+      createdAt: DateTime.now().millisecondsSinceEpoch,
+      id: messageId,
+      text: '', // 空のテキストで開始
+    );
+    ref.read(messagesProvider.notifier).addMessage(botMessage);
+
     state = const AsyncLoading();
 
     try {
       final request = ChatCompleteText(
         model: Gpt4ChatModel(),
         messages: [
-          Messages(role: Role.system, content: prompt).toJson(),
+          Messages(
+            role: Role.system,
+            content: prompt,
+          ).toJson(),
           Messages(
             role: Role.user,
             content: content,
@@ -45,20 +59,41 @@ class ChatController extends AsyncNotifier<void> {
       );
 
       final chatGpt = ref.read(openAIProvider);
-      final response = await chatGpt.onChatCompletion(request: request);
 
-      if (response != null && response.choices.isNotEmpty) {
-        final botMessage = types.TextMessage(
-          author: bot,
-          createdAt: DateTime.now().millisecondsSinceEpoch,
-          id: const Uuid().v4(),
-          text: response.choices.first.message?.content ?? '',
-        );
-        ref.read(messagesProvider.notifier).addMessage(botMessage);
-        state = const AsyncData(null);
+      // ストリーミングレスポンスの処理
+      String fullResponse = '';
+
+      await for (final response
+          in chatGpt.onChatCompletionSSE(request: request)) {
+        if (response.choices?.isNotEmpty ?? false) {
+          final newContent = response.choices?.first.message?.content ?? '';
+          fullResponse += newContent;
+
+          // メッセージを更新
+          ref.read(messagesProvider.notifier).updateMessage(
+                types.TextMessage(
+                  author: bot,
+                  createdAt: DateTime.now().millisecondsSinceEpoch,
+                  id: messageId,
+                  text: fullResponse,
+                ),
+              );
+        }
       }
+      await ref.read(flutterTtsProvider).speak(fullResponse);
+
+      state = const AsyncData(null);
     } catch (e) {
       state = AsyncError(e, StackTrace.current);
+      // エラーメッセージを表示
+      ref.read(messagesProvider.notifier).updateMessage(
+            types.TextMessage(
+              author: bot,
+              createdAt: DateTime.now().millisecondsSinceEpoch,
+              id: messageId,
+              text: 'エラーが発生しました: $e',
+            ),
+          );
     }
   }
 }

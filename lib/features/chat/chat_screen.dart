@@ -33,7 +33,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
             inputDecorationTheme: const InputDecorationTheme(),
             textTheme: ref.read(themeProvider).textTheme),
         child: Chat(
-          messages: messages.reversed.toList(),
+          messages: messages,
           onSendPressed: _handleSendPressed,
           user: user,
           theme: DefaultChatTheme(
