@@ -18,7 +18,6 @@ class CompletionPage extends StatefulWidget {
 
 class _CompletionPageState extends State<CompletionPage> {
   final _focusNode = FocusNode();
-  final _isLoading = false;
   var _displayId = '';
 
   @override
@@ -127,15 +126,6 @@ class _CompletionPageState extends State<CompletionPage> {
               ),
             ),
           ),
-          if (_isLoading)
-            Container(
-              color: Colors.black54,
-              child: const Center(
-                child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                ),
-              ),
-            ),
         ],
       ),
     );
