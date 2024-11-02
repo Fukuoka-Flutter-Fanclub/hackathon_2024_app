@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:tokyo_hakkason2024_app/features/auth/pages/signup_page.dart';
 import 'package:tokyo_hakkason2024_app/features/home/pages/home_page.dart';
+
 import '../../../core/providers/supabase_provider.dart';
 
 class LoginPage extends StatefulWidget {
