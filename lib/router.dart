@@ -7,6 +7,7 @@ import 'package:tokyo_hakkason2024_app/features/auth/pages/registration_page.dar
 import 'package:tokyo_hakkason2024_app/features/chat/chat_screen.dart';
 import 'package:tokyo_hakkason2024_app/features/home/pages/home_page.dart';
 import 'package:tokyo_hakkason2024_app/features/original/pages/entry_page.dart';
+import 'package:tokyo_hakkason2024_app/features/setting/setting_screen.dart';
 import 'package:tokyo_hakkason2024_app/features/tab/tab_page.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -90,15 +91,12 @@ final routerProvider = Provider<GoRouter>((ref) {
           StatefulShellBranch(
             navigatorKey: _settingTabNavigatorKey,
             routes: <RouteBase>[
-              // TODO(Minato): ここに設定のルート
               GoRoute(
-                name: 'setting',
-                path: '/setting',
-                // name: HomePage.routeName,
-                // path: HomePage.routeName,
+                name: SettingScreen.routeName,
+                path: SettingScreen.routeName,
                 pageBuilder: (context, state) => const MaterialPage(
-                  name: HomePage.routeName,
-                  child: HomePage(),
+                  name: SettingScreen.routeName,
+                  child: SettingScreen(),
                 ),
               ),
             ],
