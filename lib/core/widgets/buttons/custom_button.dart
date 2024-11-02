@@ -79,7 +79,7 @@ class CustomButton extends StatelessWidget {
             ),
             side: BorderSide(
               color: colorScheme.primary,
-              width: 2.w,
+              width: 1,
             ),
             textStyle: textStyle ?? defaultTextStyle,
           ).copyWith(
