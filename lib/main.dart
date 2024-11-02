@@ -10,17 +10,14 @@ import 'package:tokyo_hakkason2024_app/router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  await dotenv.load(fileName: '.env');
-  EnvConstants.load(dotenv.env);
-
+  await EnvConstants().init();
   await Supabase.initialize(
-    url: EnvConstants.supabaseUrl,
-    anonKey: EnvConstants.supabaseAnonKey,
+    url: EnvConstants().supabaseUrl,
+    anonKey: EnvConstants().supabaseAnonKey,
   );
 
   await SentryFlutter.init((options) {
-    options.dsn = EnvConstants.sentryUrl;
+    options.dsn = EnvConstants().sentryUrl;
     // Set tracesSampleRate to 1.0 to capture 100% of transactions for tracing.
     // We recommend adjusting this value in production.
     options.tracesSampleRate = 1.0;
