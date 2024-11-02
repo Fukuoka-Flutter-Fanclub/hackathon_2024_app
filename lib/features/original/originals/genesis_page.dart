@@ -16,7 +16,7 @@ class GenesisPage extends StatelessWidget {
               '創世記',
               style: context.textTheme.titleMedium,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text(
               '''
 神は「睡眠あれ」と言われた。すると睡眠があった。神は睡眠を見て、良しとされた。神は光の睡眠時間と闇の起床時間とを分けられた。
@@ -67,7 +67,7 @@ class GenesisPage extends StatelessWidget {
               '◀︎ 教義に戻る',
               style: context.textTheme.labelMedium,
             ),
-            SizedBox(height: 42),
+            const SizedBox(height: 42),
           ],
         ),
       ),

@@ -40,7 +40,7 @@ class DoctrinePage extends StatelessWidget {
             ),
             Row(
               children: [
-                const Expanded(child: SizedBox()),
+                const Expanded(child: SizedBox.shrink()),
                 Text(
                   '創世記を見る ▶',
                   style: context.textTheme.labelMedium,

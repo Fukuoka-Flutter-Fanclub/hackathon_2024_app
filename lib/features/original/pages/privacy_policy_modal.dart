@@ -9,7 +9,7 @@ class PrivacyPolicyModal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const SizedBox(),
+        leading: const SizedBox.shrink(),
         leadingWidth: 10,
         foregroundColor: Colors.black,
         title: Text(
