@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:tokyo_hakkason2024_app/core/providers/supabase_provider.dart';
 import 'package:tokyo_hakkason2024_app/features/auth/pages/completion_page.dart';
 import 'package:tokyo_hakkason2024_app/features/auth/pages/registration_page.dart';
+import 'package:tokyo_hakkason2024_app/features/chat/chat_screen.dart';
 import 'package:tokyo_hakkason2024_app/features/home/pages/home_page.dart';
 import 'package:tokyo_hakkason2024_app/features/tab/tab_page.dart';
 
@@ -67,13 +68,11 @@ final routerProvider = Provider<GoRouter>((ref) {
             routes: <RouteBase>[
               // TODO(Minato): ここにチャットのルート
               GoRoute(
-                // name: HomePage.routeName,
-                // path: HomePage.routeName,
-                name: 'chat',
-                path: '/chat',
+                name: ChatScreen.routeName,
+                path: ChatScreen.routeName,
                 pageBuilder: (context, state) => const MaterialPage(
-                  name: HomePage.routeName,
-                  child: HomePage(),
+                  name: ChatScreen.routeName,
+                  child: ChatScreen(),
                 ),
               ),
             ],
