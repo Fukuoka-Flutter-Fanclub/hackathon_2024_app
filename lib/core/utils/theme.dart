@@ -38,19 +38,19 @@ final themeProvider = Provider<ThemeData>((ref) {
     // headline
     headlineLarge: TextStyle(
       fontSize: 31.sp,
-      fontWeight: FontWeight.w100,
-      letterSpacing: 0.33,
+      fontWeight: FontWeight.w500, // Medium
+      letterSpacing: 0.33.sp,
       height: 56 / 31,
     ),
     headlineMedium: TextStyle(
       fontSize: 27.sp,
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w500, // Medium
       letterSpacing: 0.27.sp,
       height: 48 / 27,
     ),
     headlineSmall: TextStyle(
       fontSize: 23.sp,
-      fontWeight: FontWeight.w100,
+      fontWeight: FontWeight.w500, // Medium
       letterSpacing: 0.21.sp,
       height: 40 / 23,
     ),
@@ -58,39 +58,39 @@ final themeProvider = Provider<ThemeData>((ref) {
     // title
     titleLarge: TextStyle(
       fontSize: 21.sp,
-      fontWeight: FontWeight.w300,
+      fontWeight: FontWeight.w700, // Bold
       letterSpacing: 0.18.sp,
       height: 36 / 21,
     ),
     titleMedium: TextStyle(
       fontSize: 17.sp,
-      fontWeight: FontWeight.w700,
-      letterSpacing: 17.sp * 0.0012,
-      height: 28 / 17,
+      fontWeight: FontWeight.w700, // Bold
+      letterSpacing: 0.12.sp,
+      height: 24 / 17,
     ),
     titleSmall: TextStyle(
       fontSize: 15.sp,
-      fontWeight: FontWeight.w300,
+      fontWeight: FontWeight.w700, // Bold
       letterSpacing: 0.09.sp,
-      height: 24 / 15,
+      height: 20 / 15,
     ),
 
     // label
     labelLarge: TextStyle(
       fontSize: 17.sp,
-      fontWeight: FontWeight.w400,
+      fontWeight: FontWeight.w500, // Medium
       letterSpacing: 0.12.sp,
       height: 28 / 17,
     ),
     labelMedium: TextStyle(
       fontSize: 15.sp,
-      fontWeight: FontWeight.w400,
+      fontWeight: FontWeight.w500, // Medium
       letterSpacing: 0.09.sp,
       height: 24 / 15,
     ),
     labelSmall: TextStyle(
       fontSize: 13.sp,
-      fontWeight: FontWeight.w400,
+      fontWeight: FontWeight.w500, // Medium
       letterSpacing: 0.06.sp,
       height: 20 / 13,
     ),
@@ -98,27 +98,44 @@ final themeProvider = Provider<ThemeData>((ref) {
     // body
     bodyLarge: TextStyle(
       fontSize: 15.sp,
-      fontWeight: FontWeight.w300,
-      letterSpacing: 0.09000000357627869.sp,
+      fontWeight: FontWeight.w400, // Regular
+      letterSpacing: 0.09.sp,
       height: 24 / 15,
     ),
     bodyMedium: TextStyle(
       fontSize: 13.sp,
-      fontWeight: FontWeight.w300,
-      letterSpacing: 0.05999999865889549.sp,
+      fontWeight: FontWeight.w500, // Medium
+      letterSpacing: 0.06.sp,
       height: 20 / 13,
     ),
     bodySmall: TextStyle(
       fontSize: 11.sp,
-      fontWeight: FontWeight.w300,
-      letterSpacing: 0.029999999329447746.sp,
+      fontWeight: FontWeight.w400, // Regular
+      letterSpacing: 0.06.sp,
       height: 16 / 11,
     ),
   );
   return ThemeData(
-    useMaterial3: false,
+    useMaterial3: true,
     fontFamily: 'NotoSansJP',
     textTheme: textTheme,
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        foregroundColor: MyColors.white.color,
+        backgroundColor: const Color(0xFF6750A4),
+        minimumSize: Size(double.infinity, 48.h),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(28),
+        ),
+        padding: EdgeInsets.symmetric(
+          horizontal: 24.w,
+          vertical: 12.h,
+        ),
+        textStyle: textTheme.labelLarge?.copyWith(
+          fontWeight: FontWeight.w700,
+        ),
+      ),
+    ),
     inputDecorationTheme: InputDecorationTheme(
       labelStyle: textTheme.bodyLarge?.copyWith(
         color: MyColors.black.color,
