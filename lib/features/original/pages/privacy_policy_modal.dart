@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tokyo_hakkason2024_app/core/utils/context_extension.dart';
 import 'package:tokyo_hakkason2024_app/features/original/pages/original_page.dart';
 
 class PrivacyPolicyModal extends StatelessWidget {
@@ -10,16 +11,12 @@ class PrivacyPolicyModal extends StatelessWidget {
       appBar: AppBar(
         leading: const SizedBox(),
         leadingWidth: 10,
-        title: const Text('原典'),
-        // title: Row(
-        //   children: [
-        //     Expanded(
-        //       child: Expanded(
-        //         child: Center(child: Text('原典')),
-        //       ),
-        //     ),
-        //   ],
-        // ),
+        backgroundColor: context.theme.canvasColor,
+        foregroundColor: Colors.black,
+        title: Text(
+          '原典',
+          style: context.textTheme.titleLarge,
+        ),
         actions: [
           IconButton(
             onPressed: () {

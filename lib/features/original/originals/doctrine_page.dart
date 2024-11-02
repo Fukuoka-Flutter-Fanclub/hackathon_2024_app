@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tokyo_hakkason2024_app/core/utils/context_extension.dart';
 import 'package:tokyo_hakkason2024_app/features/original/widgets/paper_background.dart';
 
 class DoctrinePage extends StatelessWidget {
@@ -6,16 +7,14 @@ class DoctrinePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: PaperBackground(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               '●教義',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
+              style: context.textTheme.titleMedium,
             ),
             Text(
               '''
@@ -24,12 +23,11 @@ class DoctrinePage extends StatelessWidget {
 
 のみです。神聖な睡眠時間を奪うような面倒事は「宗教上の理由」で断ることができます。
               ''',
+              style: context.textTheme.labelMedium,
             ),
             Text(
               '●禁忌',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
+              style: context.textTheme.titleMedium,
             ),
             Text(
               '''
@@ -38,11 +36,15 @@ class DoctrinePage extends StatelessWidget {
 ・悪意をもって他者の睡眠時間を奪うこと
 破った場合は破門の上、罰として徹夜してください。
               ''',
+              style: context.textTheme.labelMedium,
             ),
             Row(
               children: [
-                Expanded(child: SizedBox()),
-                Text('創世記を見る ▶')
+                const Expanded(child: SizedBox()),
+                Text(
+                  '創世記を見る ▶',
+                  style: context.textTheme.labelMedium,
+                )
               ],
             ),
           ],

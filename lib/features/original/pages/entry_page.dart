@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:tokyo_hakkason2024_app/core/utils/context_extension.dart';
 import 'package:tokyo_hakkason2024_app/features/original/pages/original_page.dart';
 import 'package:tokyo_hakkason2024_app/features/original/pages/privacy_policy_modal.dart';
 
@@ -28,7 +29,10 @@ class EntryPage extends StatelessWidget {
                     EdgeInsets.symmetric(vertical: 14, horizontal: 44.5),
                   ),
                 ),
-                child: const Text('同意して始める'),
+                child: Text(
+                  '同意して始める',
+                  style: context.labelLarge?.apply(color: Colors.white),
+                ),
               ),
               const SizedBox(height: 24),
               RichText(
@@ -36,8 +40,7 @@ class EntryPage extends StatelessWidget {
                   children: [
                     TextSpan(
                       text: 'プライバシーポリシー',
-                      style: const TextStyle(
-                        color: Colors.black,
+                      style: context.textTheme.labelSmall?.apply(
                         decoration: TextDecoration.underline,
                       ),
                       recognizer: TapGestureRecognizer()
@@ -50,11 +53,9 @@ class EntryPage extends StatelessWidget {
                           ));
                         },
                     ),
-                    const TextSpan(
+                    TextSpan(
                       text: 'に同意したものとみなします',
-                      style: TextStyle(
-                        color: Colors.black,
-                      ),
+                      style: context.textTheme.labelSmall,
                     ),
                   ],
                 ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tokyo_hakkason2024_app/core/utils/context_extension.dart';
 import 'package:tokyo_hakkason2024_app/features/original/widgets/paper_background.dart';
 
 class GenesisPage extends StatelessWidget {
@@ -6,20 +7,18 @@ class GenesisPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: PaperBackground(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               '創世記',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
+              style: context.textTheme.titleMedium,
             ),
             SizedBox(height: 16),
             Text(
-                '''
+              '''
 神は「睡眠あれ」と言われた。すると睡眠があった。神は睡眠を見て、良しとされた。神は光の睡眠時間と闇の起床時間とを分けられた。
 
 神は眠っている時間を昼と名づけ、起きている時間を夜と名づけられた。
@@ -61,9 +60,13 @@ class GenesisPage extends StatelessWidget {
 神は光の酒宴で英気を養い、明日から頑張ろうと誓った。
 
 第七日である。
-                  '''
+                  ''',
+              style: context.textTheme.labelMedium,
             ),
-            Text('◀︎ 教義に戻る'),
+            Text(
+              '◀︎ 教義に戻る',
+              style: context.textTheme.labelMedium,
+            ),
             SizedBox(height: 42),
           ],
         ),

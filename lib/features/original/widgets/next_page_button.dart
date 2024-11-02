@@ -8,8 +8,8 @@ class NextPageButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-        onPressed: onTapped,
-        child: const Text('次へ'),
+      onPressed: onTapped,
+      child: const Text('次へ'),
     );
   }
 }
