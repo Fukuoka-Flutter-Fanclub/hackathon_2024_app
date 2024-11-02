@@ -1,8 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:tokyo_hakkason2024_app/core/constants/env_constants.dart';
 import 'package:tokyo_hakkason2024_app/router.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await dotenv.load(fileName: '.env');
+  EnvConstants.load(dotenv.env);
+
+  await Supabase.initialize(
+    url: EnvConstants.supabaseUrl,
+    anonKey: EnvConstants.supabaseAnonKey,
+  );
   runApp(const ProviderScope(
     child: MyApp(),
   ));
