@@ -43,6 +43,11 @@ dependencies:
   sentry_flutter: ^8.9.0
   flutter_screenutil: ^5.9.3
   turn_page_transition: ^0.4.0
+  chat_gpt_sdk: ^3.1.2
+  flutter_chat_ui: ^1.6.15
+  flutter_chat_types: ^3.6.2
+  uuid: ^4.5.1
+  flutter_tts: ^4.0.2
 
 dev_dependencies:
   flutter_test:
