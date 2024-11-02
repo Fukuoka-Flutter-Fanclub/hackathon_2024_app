@@ -25,7 +25,7 @@ class PrivacyPolicyModal extends StatelessWidget {
           ),
         ],
       ),
-      body: OriginalPage(),
+      body: const OriginalPage(),
     );
   }
 }

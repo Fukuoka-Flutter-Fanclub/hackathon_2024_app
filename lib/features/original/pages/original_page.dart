@@ -3,7 +3,7 @@ import 'package:tokyo_hakkason2024_app/features/original/originals/doctrine_page
 import 'package:tokyo_hakkason2024_app/features/original/originals/genesis_page.dart';
 import 'package:turn_page_transition/turn_page_transition.dart';
 
-class OriginalPage extends StatelessWidget {
+class OriginalPage extends StatefulWidget {
   const OriginalPage({super.key});
 
   static const List<Widget> pages = [
@@ -12,12 +12,32 @@ class OriginalPage extends StatelessWidget {
   ];
 
   @override
+  State<OriginalPage> createState() => _OriginalPageState();
+}
+
+class _OriginalPageState extends State<OriginalPage> {
+  TurnPageController? controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = TurnPageController();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    controller = null;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: TurnPageView.builder(
-        itemCount: pages.length,
+        itemCount: OriginalPage.pages.length,
+        controller: controller,
         itemBuilder: (_, index) {
-          return pages[index];
+          return OriginalPage.pages[index];
         },
       ),
     );
