@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -26,6 +27,12 @@ void main() async {
 
   await flutterLocalNotificationsPlugin.initialize(
     initializationSettings,
+    onDidReceiveNotificationResponse:
+        (NotificationResponse notificationResponse) async {
+      final AudioPlayer audioPlayer = AudioPlayer();
+      await audioPlayer.setSource(AssetSource("audio/stream.mp3"));
+      await audioPlayer.resume();
+    },
   );
   await EnvConstants().init();
   await Supabase.initialize(

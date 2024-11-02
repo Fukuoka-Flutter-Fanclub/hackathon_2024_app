@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -46,15 +47,12 @@ class SettingScreen extends ConsumerWidget {
               text: '波',
             ),
             AudioButton(
-              playMethod: audioPlayerNotifier.playStream,
-              text: '川のせせらぎ',
-            ),
-            TextButton(
-              onPressed: () async {
-                await requestPermissions();
-                await showNotification();
+              playMethod: () async {
+                final AudioPlayer audioPlayer = AudioPlayer();
+                await audioPlayer.setSource(AssetSource("audio/stream.mp3"));
+                await audioPlayer.resume();
               },
-              child: const Text('通知させる'),
+              text: '川のせせらぎ',
             ),
             TextButton(
               onPressed: () async {
@@ -95,7 +93,7 @@ class TimeSettingItem extends ConsumerWidget {
             onChanged: (value) {
               ref.read(settingSwitchProvider.notifier).changeBool();
               if (value) {
-                print("24:00に通知を表示する");
+                scheduleNotification();
               }
             },
           ),
@@ -106,6 +104,7 @@ class TimeSettingItem extends ConsumerWidget {
 }
 
 // 24:00の設定のみをデモで表示させるため、他はいったん適当に作っている
+// （というか同時に動くからほんとはこれもいらないまである）
 class TimeSettingMockItem extends ConsumerWidget {
   const TimeSettingMockItem({super.key, required this.time});
 

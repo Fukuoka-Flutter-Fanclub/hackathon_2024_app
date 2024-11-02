@@ -5,7 +5,7 @@ part 'setting_switch.g.dart';
 @Riverpod(keepAlive: true)
 class SettingSwitch extends _$SettingSwitch {
   @override
-  bool build() => true;
+  bool build() => false;
 
   void changeBool() {
     if (state == false) {
