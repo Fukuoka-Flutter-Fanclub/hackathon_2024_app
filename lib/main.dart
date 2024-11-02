@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -7,13 +8,25 @@ import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/standalone.dart' as tz;
 import 'package:tokyo_hakkason2024_app/core/constants/env_constants.dart';
 import 'package:tokyo_hakkason2024_app/core/utils/theme.dart';
+import 'package:tokyo_hakkason2024_app/features/notification/permission.dart';
 import 'package:tokyo_hakkason2024_app/router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   tz.initializeTimeZones();
-  tz.setLocalLocation(tz.getLocation("Asia/Tokyo"));
+  tz.setLocalLocation(tz.getLocation('Asia/Tokyo'));
+
+  const AndroidInitializationSettings initializationSettingsAndroid =
+      AndroidInitializationSettings('@mipmap/ic_launcher');
+  const InitializationSettings initializationSettings = InitializationSettings(
+    android: initializationSettingsAndroid,
+    iOS: DarwinInitializationSettings(),
+  );
+
+  await flutterLocalNotificationsPlugin.initialize(
+    initializationSettings,
+  );
   await EnvConstants().init();
   await Supabase.initialize(
     url: EnvConstants().supabaseUrl,

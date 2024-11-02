@@ -44,6 +44,13 @@ class HomePage extends ConsumerWidget {
               },
               child: const Text('通知させる'),
             ),
+            TextButton(
+              onPressed: () async {
+                await requestPermissions();
+                await scheduleNotification();
+              },
+              child: const Text('スケジュールして通知させる'),
+            ),
           ],
         ),
       ),
