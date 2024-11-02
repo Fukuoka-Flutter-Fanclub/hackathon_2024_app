@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 enum ButtonType {
   primary,
   secondary,
+  outline,
 }
 
 class CustomButton extends StatelessWidget {
@@ -28,40 +29,87 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    final buttonHeight = height?.h ?? 48.h;
+    final borderRadius = BorderRadius.circular(buttonHeight / 2);
+
     // デフォルトのテキストスタイル
-    final defaultTextStyle = Theme.of(context).textTheme.labelLarge?.copyWith(
-          fontWeight: FontWeight.w500,
-          color: Colors.white,
-        );
+    final defaultTextStyle = theme.textTheme.titleMedium?.copyWith(
+      fontWeight: FontWeight.w600,
+      height: 1.5,
+      letterSpacing: 0.15,
+    );
 
-    // ボタンのベーススタイル
-    final baseStyle = Theme.of(context).elevatedButtonTheme.style?.copyWith(
-          textStyle: WidgetStateProperty.all(
-            textStyle ?? defaultTextStyle,
-          ),
-        );
-
-    // ボタンタイプに応じたスタイル
-    ButtonStyle? getStyleForType() {
+    ButtonStyle getStyleForType() {
       switch (type) {
         case ButtonType.primary:
-          return baseStyle;
+          return ElevatedButton.styleFrom(
+            backgroundColor: colorScheme.primary,
+            foregroundColor: colorScheme.onPrimary,
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+              borderRadius: borderRadius,
+            ),
+            textStyle: textStyle ?? defaultTextStyle,
+          );
+
         case ButtonType.secondary:
-          // セカンダリーボタンのスタイルをここに追加
-          return baseStyle?.copyWith(
-              // セカンダリー用のスタイル設定
-              );
+          return ElevatedButton.styleFrom(
+            backgroundColor: colorScheme.secondary,
+            foregroundColor: colorScheme.onSecondary,
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+              borderRadius: borderRadius,
+            ),
+            textStyle: textStyle ?? defaultTextStyle,
+          ).copyWith(
+            overlayColor: WidgetStateProperty.all(
+              colorScheme.secondary.withOpacity(0.12),
+            ),
+          );
+
+        case ButtonType.outline:
+          return OutlinedButton.styleFrom(
+            backgroundColor: Colors.transparent,
+            foregroundColor: colorScheme.primary,
+            shape: RoundedRectangleBorder(
+              borderRadius: borderRadius,
+            ),
+            side: BorderSide(
+              color: colorScheme.primary,
+              width: 2.w,
+            ),
+            textStyle: textStyle ?? defaultTextStyle,
+          ).copyWith(
+            overlayColor: WidgetStateProperty.all(
+              colorScheme.primary.withOpacity(0.12),
+            ),
+          );
       }
     }
+
+    Widget buildChild() {
+      return Text(text);
+    }
+
+    Widget button = type == ButtonType.outline
+        ? OutlinedButton(
+            onPressed: isLoading ? null : onPressed,
+            style: getStyleForType(),
+            child: buildChild(),
+          )
+        : ElevatedButton(
+            onPressed: isLoading ? null : onPressed,
+            style: getStyleForType(),
+            child: buildChild(),
+          );
 
     return SizedBox(
       width: width?.w ?? double.infinity,
       height: height?.h ?? 48.h,
-      child: ElevatedButton(
-        onPressed: isLoading ? null : onPressed,
-        style: getStyleForType(),
-        child: Text(text),
-      ),
+      child: button,
     );
   }
 }
