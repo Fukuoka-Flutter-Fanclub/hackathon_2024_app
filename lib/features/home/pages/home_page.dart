@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tokyo_hakkason2024_app/features/audio/audio_button.dart';
 import 'package:tokyo_hakkason2024_app/features/audio/audio_player.dart';
+import 'package:tokyo_hakkason2024_app/features/notification/permission.dart';
+import 'package:tokyo_hakkason2024_app/features/notification/settings.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
@@ -34,6 +36,13 @@ class HomePage extends ConsumerWidget {
             AudioButton(
               playMethod: audioPlayerNotifier.playStream,
               text: '川のせせらぎ',
+            ),
+            TextButton(
+              onPressed: () async {
+                await requestPermissions();
+                await showNotification();
+              },
+              child: const Text('通知させる'),
             ),
           ],
         ),
