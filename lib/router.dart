@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tokyo_hakkason2024_app/core/providers/supabase_provider.dart';
+import 'package:tokyo_hakkason2024_app/features/auth/pages/completion_page.dart';
 import 'package:tokyo_hakkason2024_app/features/auth/pages/registration_page.dart';
-import 'package:tokyo_hakkason2024_app/features/auth/pages/signup_page.dart';
 import 'package:tokyo_hakkason2024_app/features/home/pages/home_page.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
@@ -38,15 +38,13 @@ final routerProvider = Provider<GoRouter>((ref) {
         },
       ),
       GoRoute(
-        path: SignupPage.routeName,
-        name: SignupPage.routeName,
-        pageBuilder: (context, state) {
-          return MaterialPage(
-            key: state.pageKey,
-            child: const SignupPage(),
-          );
-        },
-      ),
+          path: CompletionPage.routeName,
+          pageBuilder: (context, state) {
+            return MaterialPage(
+              key: state.pageKey,
+              child: const CompletionPage(),
+            );
+          }),
     ],
     errorPageBuilder: (context, state) => MaterialPage(
       key: state.pageKey,
