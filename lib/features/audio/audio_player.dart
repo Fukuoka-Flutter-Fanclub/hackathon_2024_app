@@ -13,8 +13,23 @@ class AudioPlayerNotifier extends _$AudioPlayerNotifier {
     return _audioPlayer;
   }
 
-  Future<void> play() async {
+  Future<void> playFire() async {
     await _audioPlayer.setSource(AssetSource("audio/fire.mp3"));
+    await _audioPlayer.resume();
+  }
+
+  Future<void> playRain() async {
+    await _audioPlayer.setSource(AssetSource("audio/rain.mp3"));
+    await _audioPlayer.resume();
+  }
+
+  Future<void> playRipple() async {
+    await _audioPlayer.setSource(AssetSource("audio/ripple.mp3"));
+    await _audioPlayer.resume();
+  }
+
+  Future<void> playStream() async {
+    await _audioPlayer.setSource(AssetSource("audio/stream.mp3"));
     await _audioPlayer.resume();
   }
 

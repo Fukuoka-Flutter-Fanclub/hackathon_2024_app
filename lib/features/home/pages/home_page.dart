@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tokyo_hakkason2024_app/features/audio/audio_button.dart';
 import 'package:tokyo_hakkason2024_app/features/audio/audio_player.dart';
 
 class HomePage extends ConsumerWidget {
@@ -18,16 +19,21 @@ class HomePage extends ConsumerWidget {
       body: Center(
         child: Column(
           children: [
-            TextButton(
-              onPressed: () {
-                try {
-                  print('play');
-                  audioPlayerNotifier.play();
-                } catch (e) {
-                  print(e);
-                }
-              },
-              child: const Text('焚き火'),
+            AudioButton(
+              playMethod: audioPlayerNotifier.playFire,
+              text: '焚き火',
+            ),
+            AudioButton(
+              playMethod: audioPlayerNotifier.playRain,
+              text: '雨',
+            ),
+            AudioButton(
+              playMethod: audioPlayerNotifier.playRipple,
+              text: '波',
+            ),
+            AudioButton(
+              playMethod: audioPlayerNotifier.playStream,
+              text: '川のせせらぎ',
             ),
           ],
         ),
