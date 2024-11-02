@@ -10,7 +10,6 @@ class EntryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).canvasColor,
       body: SafeArea(
         child: Center(
           child: Column(

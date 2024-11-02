@@ -11,7 +11,6 @@ class PrivacyPolicyModal extends StatelessWidget {
       appBar: AppBar(
         leading: const SizedBox(),
         leadingWidth: 10,
-        backgroundColor: context.theme.canvasColor,
         foregroundColor: Colors.black,
         title: Text(
           '原典',
