@@ -170,11 +170,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
           ),
           if (_isLoading)
             Container(
+              alignment: Alignment.center,
               color: Colors.black54,
-              child: const Center(
-                child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                ),
+              child: const CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
               ),
             ),
         ],
