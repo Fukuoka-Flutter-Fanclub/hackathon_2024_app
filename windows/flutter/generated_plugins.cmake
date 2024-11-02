@@ -5,6 +5,7 @@
 list(APPEND FLUTTER_PLUGIN_LIST
   app_links
   flutter_tts
+  audioplayers_windows
   url_launcher_windows
 )
 
