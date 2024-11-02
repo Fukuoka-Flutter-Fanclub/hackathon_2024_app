@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:tokyo_hakkason2024_app/core/constants/env_constants.dart';
+import 'package:tokyo_hakkason2024_app/core/utils/theme.dart';
 import 'package:tokyo_hakkason2024_app/router.dart';
 
 void main() async {
@@ -36,11 +38,17 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final router = ref.watch(routerProvider);
-    return MaterialApp.router(
-      routerDelegate: router.routerDelegate,
-      routeInformationParser: router.routeInformationParser,
-      routeInformationProvider: router.routeInformationProvider,
-    );
+    return ScreenUtilInit(
+        designSize: const Size(375, 812), // 仮のサイズ iPhone 12 mini
+        builder: (context, _) {
+          final router = ref.watch(routerProvider);
+          final theme = ref.read(themeProvider);
+          return MaterialApp.router(
+            theme: theme,
+            routerDelegate: router.routerDelegate,
+            routeInformationParser: router.routeInformationParser,
+            routeInformationProvider: router.routeInformationProvider,
+          );
+        });
   }
 }
