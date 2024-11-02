@@ -45,82 +45,84 @@ class _CompletionPageState extends State<CompletionPage> {
         children: [
           Scaffold(
             body: SafeArea(
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 30),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "入信しました。",
-                          style: textTheme.headlineMedium,
-                        ),
-                        Text(
-                          "あなたはこれからスヤスヤ教として生きていくのです。",
-                          style: textTheme.labelMedium,
-                        ),
-                      ],
-                    ),
-                    Card(
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                        side: const BorderSide(
-                          color: Colors.black,
-                          width: 1.0,
-                        ),
-                      ),
-                      child: Column(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 30),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            height: 188,
-                            width: 343,
-                            decoration: BoxDecoration(
-                              color: Colors.grey.shade300,
-                              borderRadius: BorderRadius.circular(4.0),
-                            ),
-                            child: const Center(
-                              child: Icon(
-                                Icons.image,
-                                size: 48,
-                                color: Colors.grey,
-                              ),
-                            ),
+                          Text(
+                            "入信しました。",
+                            style: textTheme.headlineMedium,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 16, top: 16, bottom: 16),
-                            child: Column(
-                              children: [
-                                Text(
-                                  "スヤリスト",
-                                  style: textTheme.bodyLarge,
-                                ),
-                                const SizedBox(height: 4),
-                                Text(
-                                  _displayId, // フォーマットされたIDを表示
-                                  style: textTheme.bodyMedium,
-                                ),
-                              ],
-                            ),
-                          )
+                          Text(
+                            "あなたはこれからスヤスヤ教として生きていくのです。",
+                            style: textTheme.labelMedium,
+                          ),
                         ],
                       ),
-                    ),
-                    CustomButton(
-                      width: 225,
-                      height: 56,
-                      type: ButtonType.primary,
-                      text: "ホームへ",
-                      textStyle: textTheme.labelLarge,
-                      onPressed: () => context.go(HomePage.routeName),
-                      isLoading: false,
-                    ),
-                  ],
+                      Card(
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12.0),
+                          side: const BorderSide(
+                            color: Colors.black,
+                            width: 1.0,
+                          ),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 188,
+                              width: 343,
+                              decoration: BoxDecoration(
+                                color: Colors.grey.shade300,
+                                borderRadius: BorderRadius.circular(4.0),
+                              ),
+                              child: const Center(
+                                child: Icon(
+                                  Icons.image,
+                                  size: 48,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 16, top: 16, bottom: 16),
+                              child: Column(
+                                children: [
+                                  Text(
+                                    "スヤリスト",
+                                    style: textTheme.bodyLarge,
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    _displayId, // フォーマットされたIDを表示
+                                    style: textTheme.bodyMedium,
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      CustomButton(
+                        width: 225,
+                        height: 56,
+                        type: ButtonType.primary,
+                        text: "ホームへ",
+                        textStyle: textTheme.labelLarge,
+                        onPressed: () => context.go(HomePage.routeName),
+                        isLoading: false,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
