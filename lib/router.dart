@@ -38,13 +38,14 @@ final routerProvider = Provider<GoRouter>((ref) {
         },
       ),
       GoRoute(
-          path: CompletionPage.routeName,
-          pageBuilder: (context, state) {
-            return MaterialPage(
-              key: state.pageKey,
-              child: const CompletionPage(),
-            );
-          }),
+        path: CompletionPage.routeName,
+        builder: (context, state) {
+          final Map<String, dynamic> extra =
+              state.extra as Map<String, dynamic>;
+          final userId = extra['userId'] as String;
+          return CompletionPage(userId: userId);
+        },
+      ),
     ],
     errorPageBuilder: (context, state) => MaterialPage(
       key: state.pageKey,

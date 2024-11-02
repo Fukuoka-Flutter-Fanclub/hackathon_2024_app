@@ -35,13 +35,18 @@ class _RegistrationPageState extends State<RegistrationPage> {
         try {
           await supabase.from('users').upsert({
             'id': response.user!.id,
-            'name': _nameController.text.trim(),
+            'nickname': _nameController.text.trim(),
             'created_at': DateTime.now().toIso8601String(),
             'updated_at': DateTime.now().toIso8601String(),
           }).select();
 
           if (!mounted) return;
-          context.go(CompletionPage.routeName);
+          context.go(
+            CompletionPage.routeName,
+            extra: {
+              'userId': response.user!.id,
+            },
+          );
         } catch (dbError) {
           if (!mounted) return;
           ScaffoldMessenger.of(context).showSnackBar(

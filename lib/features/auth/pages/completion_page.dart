@@ -4,7 +4,12 @@ import 'package:tokyo_hakkason2024_app/core/widgets/buttons/custom_button.dart';
 import 'package:tokyo_hakkason2024_app/features/home/pages/home_page.dart';
 
 class CompletionPage extends StatefulWidget {
-  const CompletionPage({super.key});
+  const CompletionPage({
+    super.key,
+    required this.userId, // ユーザーIDを必須パラメータとして追加
+  });
+
+  final String userId;
   static const String routeName = '/completion';
 
   @override
@@ -12,9 +17,24 @@ class CompletionPage extends StatefulWidget {
 }
 
 class _CompletionPageState extends State<CompletionPage> {
-  final _nameController = TextEditingController();
   final _focusNode = FocusNode();
   final bool _isLoading = false;
+  String _displayId = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _formatDisplayId();
+  }
+
+  // UUIDから表示用IDを生成
+  void _formatDisplayId() {
+    // UUIDの最初の5文字を取得して大文字に変換
+    final shortId = widget.userId.substring(0, 5).toUpperCase();
+    setState(() {
+      _displayId = 'S$shortId';
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +59,7 @@ class _CompletionPageState extends State<CompletionPage> {
                           style: textTheme.headlineMedium,
                         ),
                         Text(
-                          "あなたまこれからすやすや教として生きていくのです。",
+                          "あなたはこれからスヤスヤ教として生きていくのです。",
                           style: textTheme.labelMedium,
                         ),
                       ],
@@ -82,7 +102,7 @@ class _CompletionPageState extends State<CompletionPage> {
                                 ),
                                 const SizedBox(height: 4),
                                 Text(
-                                  "s00001",
+                                  _displayId, // フォーマットされたIDを表示
                                   style: textTheme.bodyMedium,
                                 ),
                               ],
@@ -121,7 +141,7 @@ class _CompletionPageState extends State<CompletionPage> {
 
   @override
   void dispose() {
-    _nameController.dispose();
+    _focusNode.dispose();
     super.dispose();
   }
 }
