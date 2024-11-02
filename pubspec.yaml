@@ -48,6 +48,7 @@ dependencies:
   flutter_chat_types: ^3.6.2
   uuid: ^4.5.1
   flutter_tts: ^4.0.2
+  flutter_launcher_icons: ^0.14.1
 
 dev_dependencies:
   flutter_test:
@@ -74,6 +75,13 @@ flutter:
   assets:
     - .env
     - assets/images/
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: 'assets/images/icon.png'
+  adaptive_icon_foreground: "assets/images/android_icon.png"
+  adaptive_icon_background: "#111538"
 
   fonts:
     - family: NotoSansJP
