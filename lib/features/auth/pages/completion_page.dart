@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tokyo_hakkason2024_app/core/widgets/buttons/custom_button.dart';
+import 'package:tokyo_hakkason2024_app/core/widgets/membership_card.dart';
+import 'package:tokyo_hakkason2024_app/features/home/model/user_model.dart';
 import 'package:tokyo_hakkason2024_app/features/home/pages/home_page.dart';
 
 class CompletionPage extends StatefulWidget {
   const CompletionPage({
     super.key,
     required this.userId,
+    required this.nickname,
   });
 
   final String userId;
+  final String nickname;
   static const String routeName = '/completion';
 
   @override
@@ -18,7 +22,6 @@ class CompletionPage extends StatefulWidget {
 
 class _CompletionPageState extends State<CompletionPage> {
   final _focusNode = FocusNode();
-  final _displayId = '';
 
   @override
   void initState() {
@@ -53,52 +56,11 @@ class _CompletionPageState extends State<CompletionPage> {
                           style: textTheme.labelMedium,
                         ),
                         SizedBox(height: screenHeight * 0.05),
-                        Card(
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12.0),
-                            side: const BorderSide(
-                              color: Colors.black,
-                              width: 1.0,
-                            ),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                height: 188,
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  color: Colors.grey.shade300,
-                                  borderRadius: BorderRadius.circular(4.0),
-                                ),
-                                child: const Center(
-                                  child: Icon(
-                                    Icons.image,
-                                    size: 48,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(16),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "スヤリスト",
-                                      style: textTheme.bodyLarge,
-                                    ),
-                                    const SizedBox(height: 4),
-                                    Text(
-                                      _displayId,
-                                      style: textTheme.bodyMedium,
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
+                        MembershipCard.portrait(
+                          user: UserModel(
+                              id: widget.userId, nickname: widget.nickname),
+                          textTheme: textTheme,
+                          showButton: false,
                         ),
                         SizedBox(height: screenHeight * 0.05),
                       ],

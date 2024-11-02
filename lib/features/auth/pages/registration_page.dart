@@ -45,6 +45,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
             CompletionPage.routeName,
             extra: {
               'userId': response.user!.id,
+              'nickname': _nameController.text.trim(),
             },
           );
         } catch (dbError) {
