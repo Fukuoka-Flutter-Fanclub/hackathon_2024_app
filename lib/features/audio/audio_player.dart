@@ -14,7 +14,8 @@ class AudioPlayerNotifier extends _$AudioPlayerNotifier {
   }
 
   Future<void> play() async {
-    await _audioPlayer.play(AssetSource("audio/fire.mp3"));
+    await _audioPlayer.setSource(AssetSource("audio/fire.mp3"));
+    await _audioPlayer.resume();
   }
 
   void pause() {
