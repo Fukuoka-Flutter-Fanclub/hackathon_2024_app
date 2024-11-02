@@ -6,10 +6,18 @@ import 'package:tokyo_hakkason2024_app/features/auth/pages/completion_page.dart'
 import 'package:tokyo_hakkason2024_app/features/auth/pages/registration_page.dart';
 import 'package:tokyo_hakkason2024_app/features/chat/chat_screen.dart';
 import 'package:tokyo_hakkason2024_app/features/home/pages/home_page.dart';
+import 'package:tokyo_hakkason2024_app/features/tab/tab_page.dart';
+
+final _rootNavigatorKey = GlobalKey<NavigatorState>();
+final _homeTabNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'home');
+final _chatTabNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'chat');
+final _settingTabNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'setting');
 
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
-    initialLocation: ChatScreen.routeName,
+    navigatorKey: _rootNavigatorKey,
+    initialLocation: HomePage.routeName,
     redirect: (_, state) {
       if (supabase.auth.currentUser == null &&
           state.matchedLocation == HomePage.routeName) {
@@ -18,16 +26,6 @@ final routerProvider = Provider<GoRouter>((ref) {
       return null;
     },
     routes: [
-      GoRoute(
-        path: HomePage.routeName,
-        name: HomePage.routeName,
-        pageBuilder: (context, state) {
-          return MaterialPage(
-            key: state.pageKey,
-            child: const HomePage(),
-          );
-        },
-      ),
       GoRoute(
         path: RegistrationPage.routeName,
         name: RegistrationPage.routeName,
@@ -47,15 +45,55 @@ final routerProvider = Provider<GoRouter>((ref) {
           return CompletionPage(userId: userId);
         },
       ),
-      GoRoute(
-        path: ChatScreen.routeName,
-        name: ChatScreen.routeName,
-        pageBuilder: (context, state) {
-          return MaterialPage(
-            key: state.pageKey,
-            child: const ChatScreen(),
-          );
+      StatefulShellRoute.indexedStack(
+        builder: (context, state, navigationShell) {
+          return HomeTabPage(navigationShell);
         },
+        branches: [
+          StatefulShellBranch(
+            navigatorKey: _homeTabNavigatorKey,
+            routes: <RouteBase>[
+              GoRoute(
+                name: HomePage.routeName,
+                path: HomePage.routeName,
+                pageBuilder: (context, state) => const MaterialPage(
+                  name: HomePage.routeName,
+                  child: HomePage(),
+                ),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            navigatorKey: _chatTabNavigatorKey,
+            routes: <RouteBase>[
+              // TODO(Minato): ここにチャットのルート
+              GoRoute(
+                name: ChatScreen.routeName,
+                path: ChatScreen.routeName,
+                pageBuilder: (context, state) => const MaterialPage(
+                  name: ChatScreen.routeName,
+                  child: ChatScreen(),
+                ),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            navigatorKey: _settingTabNavigatorKey,
+            routes: <RouteBase>[
+              // TODO(Minato): ここに設定のルート
+              GoRoute(
+                name: 'setting',
+                path: '/setting',
+                // name: HomePage.routeName,
+                // path: HomePage.routeName,
+                pageBuilder: (context, state) => const MaterialPage(
+                  name: HomePage.routeName,
+                  child: HomePage(),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     ],
     errorPageBuilder: (context, state) => MaterialPage(
