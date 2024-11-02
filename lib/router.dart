@@ -6,6 +6,7 @@ import 'package:tokyo_hakkason2024_app/features/auth/pages/completion_page.dart'
 import 'package:tokyo_hakkason2024_app/features/auth/pages/registration_page.dart';
 import 'package:tokyo_hakkason2024_app/features/chat/chat_screen.dart';
 import 'package:tokyo_hakkason2024_app/features/home/pages/home_page.dart';
+import 'package:tokyo_hakkason2024_app/features/original/pages/entry_page.dart';
 import 'package:tokyo_hakkason2024_app/features/tab/tab_page.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -21,11 +22,20 @@ final routerProvider = Provider<GoRouter>((ref) {
     redirect: (_, state) {
       if (supabase.auth.currentUser == null &&
           state.matchedLocation == HomePage.routeName) {
-        return RegistrationPage.routeName;
+        return EntryPage.routeName;
       }
       return null;
     },
     routes: [
+      GoRoute(
+        path: EntryPage.routeName,
+        name: EntryPage.routeName,
+        pageBuilder: (context, state) {
+          return const MaterialPage(
+            child: EntryPage(),
+          );
+        },
+      ),
       GoRoute(
         path: RegistrationPage.routeName,
         name: RegistrationPage.routeName,
