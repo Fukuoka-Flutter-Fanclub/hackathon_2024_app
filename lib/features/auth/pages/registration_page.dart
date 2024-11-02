@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:tokyo_hakkason2024_app/features/auth/pages/signup_page.dart';
-import 'package:tokyo_hakkason2024_app/features/home/pages/home_page.dart';
-
-import '../../../core/providers/supabase_provider.dart';
+import 'package:tokyo_hakkason2024_app/core/providers/supabase_provider.dart';
+import 'package:tokyo_hakkason2024_app/core/widgets/buttons/custom_button.dart';
+import 'package:tokyo_hakkason2024_app/features/auth/pages/completion_page.dart';
 
 class RegistrationPage extends StatefulWidget {
   const RegistrationPage({super.key});
@@ -30,33 +29,39 @@ class _RegistrationPageState extends State<RegistrationPage> {
       }
       setState(() => _isLoading = true);
 
-      // 匿名認証を実行
       final AuthResponse response = await supabase.auth.signInAnonymously();
 
-      // usersテーブルにユーザー情報を保存
       if (response.user != null) {
-        await supabase.from('users').upsert({
-          'id': response.user!.id,
-          'name': _nameController.text.trim(),
-          'created_at': DateTime.now().toIso8601String(),
-          'updated_at': DateTime.now().toIso8601String(),
-        });
+        try {
+          await supabase.from('users').upsert({
+            'id': response.user!.id,
+            'name': _nameController.text.trim(),
+            'created_at': DateTime.now().toIso8601String(),
+            'updated_at': DateTime.now().toIso8601String(),
+          }).select();
 
-        // BuildContextの有効性をチェック
-        if (!mounted) return;
-
-        // ホーム画面に遷移
-        context.go(HomePage.routeName);
+          if (!mounted) return;
+          context.go(CompletionPage.routeName);
+        } catch (dbError) {
+          if (!mounted) return;
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('データベースエラー: ${dbError.toString()}')),
+          );
+          await supabase.auth.signOut();
+          return;
+        }
+      } else {
+        throw Exception('認証は成功しましたが、ユーザー情報が取得できませんでした');
       }
     } on AuthException catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(e.message)),
+        SnackBar(content: Text('認証エラー: ${e.message}')),
       );
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('予期せぬエラーが発生しました')),
+        SnackBar(content: Text('エラーが発生しました: ${e.toString()}')),
       );
     } finally {
       if (mounted) {
@@ -67,50 +72,105 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return Focus(
       focusNode: _focusNode,
-      child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextFormField(
-                  controller: _nameController,
-                  decoration: const InputDecoration(labelText: '信者名'),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'ニックネームを入力してください';
-                    }
-                    if (value.length > 20) {
-                      return 'ニックネームは20文字以内で入力してください';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 24),
-                ElevatedButton(
-                  onPressed: _isLoading ? null : _signInAnonymously,
-                  child: _isLoading
-                      ? const CircularProgressIndicator()
-                      : const Text('匿名でログイン'),
-                ),
-                if (!_isLoading) ...[
-                  const SizedBox(height: 16),
-                  TextButton(
-                    onPressed: () {
-                      _focusNode.unfocus();
-                      context.go(SignupPage.routeName);
-                    },
-                    child: const Text('アカウントを作成して登録'),
+      child: Stack(
+        children: [
+          Scaffold(
+            body: SafeArea(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 30),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "ニックネームを入力",
+                            style: textTheme.headlineMedium,
+                          ),
+                          Text(
+                            "スヤスヤ教に入信するためにあなたの名前を教えてください。",
+                            style: textTheme.labelMedium,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 24),
+                      TextFormField(
+                        controller: _nameController,
+                        enabled: !_isLoading,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'ニックネームを入力してください';
+                          }
+                          if (value.length > 20) {
+                            return 'ニックネームは20文字以内で入力してください';
+                          }
+                          return null;
+                        },
+                        decoration: InputDecoration(
+                          labelText: 'ニックネーム',
+                          labelStyle: TextStyle(
+                            color: Colors.grey[700],
+                          ),
+                          hintText: '例）スヤリスト',
+                          hintStyle: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 16,
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: const BorderSide(
+                              color: Colors.grey,
+                              width: 1,
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: const BorderSide(
+                              color: Colors.grey,
+                              width: 1,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: const BorderSide(
+                              color: Colors.blue,
+                              width: 1.5,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const Expanded(child: SizedBox()),
+                      CustomButton(
+                        width: 225,
+                        height: 56,
+                        type: ButtonType.primary,
+                        text: "入信する",
+                        textStyle: textTheme.labelLarge,
+                        onPressed: _isLoading ? null : _signInAnonymously,
+                        isLoading: false,
+                      ),
+                    ],
                   ),
-                ],
-              ],
+                ),
+              ),
             ),
           ),
-        ),
+          if (_isLoading)
+            Container(
+              color: Colors.black54,
+              child: const Center(
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                ),
+              ),
+            ),
+        ],
       ),
     );
   }
