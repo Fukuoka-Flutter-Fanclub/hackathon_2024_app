@@ -38,87 +38,95 @@ class _MembershipCardSheetState extends State<MembershipCardSheet> {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 38),
-          child: Row(
-            children: [
-              Flexible(
-                flex: 65,
-                child: SingleChildScrollView(
-                  child: Center(
-                    child: MembershipCard.landscape(
-                      user: widget.user,
-                      textTheme: textTheme,
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/images/membership_card_background.png'),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 38),
+            child: Row(
+              children: [
+                Flexible(
+                  flex: 65,
+                  child: SingleChildScrollView(
+                    child: Center(
+                      child: MembershipCard.landscape(
+                        user: widget.user,
+                        textTheme: textTheme,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Flexible(
-                flex: 35,
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 27),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "スヤリストとは",
-                              style: textTheme.labelSmall,
-                            ),
-                            const SizedBox(height: 16),
-                            Text(
-                              "スヤスヤ教を信じる人たちである。",
-                              style: textTheme.labelSmall,
-                            ),
-                            const SizedBox(height: 16),
-                            Text(
-                              "教義",
-                              style: textTheme.labelSmall,
-                            ),
-                            const SizedBox(height: 8),
-                            Text(
-                              "「ちゃんと寝ろ」\n「睡眠時間を増やせ」",
-                              style: textTheme.labelSmall,
-                            ),
-                            const SizedBox(height: 16),
-                            Text(
-                              "神聖な睡眠時間を奪うような面倒事は断る場合がございます。",
-                              style: textTheme.labelSmall,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 16),
-                        Align(
-                          alignment: Alignment.bottomRight,
-                          child: CustomButton(
-                            width: 56,
-                            height: 112,
-                            type: ButtonType.outline,
-                            text: "閉じる",
-                            textStyle: textTheme.labelLarge,
-                            onPressed: () async {
-                              await SystemChrome.setPreferredOrientations([
-                                DeviceOrientation.portraitUp,
-                              ]);
-                              if (context.mounted) {
-                                Navigator.pop(context);
-                              }
-                            },
-                            isLoading: false,
+                Flexible(
+                  flex: 35,
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 27),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "スヤリストとは",
+                                style: textTheme.labelSmall,
+                              ),
+                              const SizedBox(height: 16),
+                              Text(
+                                "スヤスヤ教を信じる人たちである。",
+                                style: textTheme.labelSmall,
+                              ),
+                              const SizedBox(height: 16),
+                              Text(
+                                "教義",
+                                style: textTheme.labelSmall,
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                "「ちゃんと寝ろ」\n「睡眠時間を増やせ」",
+                                style: textTheme.labelSmall,
+                              ),
+                              const SizedBox(height: 16),
+                              Text(
+                                "神聖な睡眠時間を奪うような面倒事は断る場合がございます。",
+                                style: textTheme.labelSmall,
+                              ),
+                            ],
                           ),
-                        ),
-                      ],
+                          const SizedBox(height: 16),
+                          Align(
+                            alignment: Alignment.bottomRight,
+                            child: CustomButton(
+                              width: 56,
+                              height: 112,
+                              type: ButtonType.outline,
+                              text: "閉じる",
+                              textStyle: textTheme.labelLarge,
+                              onPressed: () async {
+                                await SystemChrome.setPreferredOrientations([
+                                  DeviceOrientation.portraitUp,
+                                ]);
+                                if (context.mounted) {
+                                  Navigator.pop(context);
+                                }
+                              },
+                              isLoading: false,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

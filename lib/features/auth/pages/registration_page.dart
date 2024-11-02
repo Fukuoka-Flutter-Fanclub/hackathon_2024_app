@@ -84,91 +84,101 @@ class _RegistrationPageState extends State<RegistrationPage> {
       focusNode: _focusNode,
       child: Stack(
         children: [
-          Scaffold(
-            body: SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: SingleChildScrollView(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const SizedBox(height: 24),
-                              Text(
-                                "ニックネームを入力",
-                                style: textTheme.headlineMedium,
-                              ),
-                              Text(
-                                "スヤスヤ教に入信するためにあなたの名前を教えてください。",
-                                style: textTheme.labelMedium,
-                              ),
-                              const SizedBox(height: 24),
-                              TextFormField(
-                                controller: _nameController,
-                                enabled: !_isLoading,
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'ニックネームを入力してください';
-                                  }
-                                  if (value.length > 20) {
-                                    return 'ニックネームは20文字以内で入力してください';
-                                  }
-                                  return null;
-                                },
-                                decoration: InputDecoration(
-                                  labelText: 'ニックネーム',
-                                  labelStyle: TextStyle(
-                                    color: Colors.grey[700],
-                                  ),
-                                  hintText: '例）スヤリスト',
-                                  hintStyle: const TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 16,
-                                  ),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                    borderSide: const BorderSide(
-                                      color: Colors.grey,
-                                      width: 1,
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                    'assets/images/registration_page_background.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Scaffold(
+              backgroundColor: Colors.transparent,
+              body: SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SizedBox(height: 24),
+                                Text(
+                                  "ニックネームを入力",
+                                  style: textTheme.headlineMedium,
+                                ),
+                                Text(
+                                  "スヤスヤ教に入信するためにあなたの名前を教えてください。",
+                                  style: textTheme.labelMedium,
+                                ),
+                                const SizedBox(height: 24),
+                                TextFormField(
+                                  controller: _nameController,
+                                  enabled: !_isLoading,
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'ニックネームを入力してください';
+                                    }
+                                    if (value.length > 20) {
+                                      return 'ニックネームは20文字以内で入力してください';
+                                    }
+                                    return null;
+                                  },
+                                  decoration: InputDecoration(
+                                    labelText: 'ニックネーム',
+                                    labelStyle: TextStyle(
+                                      color: Colors.grey[700],
                                     ),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                    borderSide: const BorderSide(
+                                    hintText: '例）スヤリスト',
+                                    hintStyle: const TextStyle(
                                       color: Colors.grey,
-                                      width: 1,
+                                      fontSize: 16,
                                     ),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                    borderSide: const BorderSide(
-                                      color: Colors.blue,
-                                      width: 1.5,
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                      borderSide: const BorderSide(
+                                        color: Colors.grey,
+                                        width: 1,
+                                      ),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                      borderSide: const BorderSide(
+                                        color: Colors.grey,
+                                        width: 1,
+                                      ),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                      borderSide: const BorderSide(
+                                        color: Colors.blue,
+                                        width: 1.5,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 24),
-                        child: CustomButton(
-                          width: 225,
-                          height: 56,
-                          type: ButtonType.primary,
-                          text: "入信する",
-                          textStyle: textTheme.labelLarge,
-                          onPressed: _isLoading ? null : _signInAnonymously,
-                          isLoading: false,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 24),
+                          child: CustomButton(
+                            width: 225,
+                            height: 56,
+                            type: ButtonType.primary,
+                            text: "入信する",
+                            textStyle: textTheme.labelLarge,
+                            onPressed: _isLoading ? null : _signInAnonymously,
+                            isLoading: false,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

@@ -118,21 +118,33 @@ final themeProvider = Provider<ThemeData>((ref) {
   return ThemeData(
     useMaterial3: true,
     fontFamily: 'NotoSansJP',
+    scaffoldBackgroundColor: const Color(0xFFF7FBFF),
     textTheme: textTheme,
+    colorScheme: ColorScheme.light(
+      primary: const Color(0xFF4BADF3),
+      onPrimary: MyColors.white.color,
+      surface: MyColors.white.color,
+    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ElevatedButton.styleFrom(
-        foregroundColor: MyColors.white.color,
-        backgroundColor: const Color(0xFF6750A4),
-        minimumSize: Size(double.infinity, 48.h),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(28),
+      style: ButtonStyle(
+        backgroundColor: WidgetStateProperty.all(const Color(0xFF4BADF3)),
+        foregroundColor: WidgetStateProperty.all(MyColors.white.color),
+        minimumSize: WidgetStateProperty.all(Size(double.infinity, 48.h)),
+        padding: WidgetStateProperty.all(
+          EdgeInsets.symmetric(
+            horizontal: 24.w,
+            vertical: 12.h,
+          ),
         ),
-        padding: EdgeInsets.symmetric(
-          horizontal: 24.w,
-          vertical: 12.h,
+        shape: WidgetStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(28),
+          ),
         ),
-        textStyle: textTheme.labelLarge?.copyWith(
-          fontWeight: FontWeight.w700,
+        textStyle: WidgetStateProperty.all(
+          textTheme.labelLarge?.copyWith(
+            fontWeight: FontWeight.w700,
+          ),
         ),
       ),
     ),

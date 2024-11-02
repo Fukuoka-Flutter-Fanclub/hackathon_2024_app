@@ -35,51 +35,60 @@ class _CompletionPageState extends State<CompletionPage> {
 
     return Focus(
       focusNode: _focusNode,
-      child: Scaffold(
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              children: [
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(height: 30),
-                        Text(
-                          "入信しました。",
-                          style: textTheme.headlineMedium,
-                        ),
-                        Text(
-                          "あなたはこれからスヤスヤ教として生きていくのです。",
-                          style: textTheme.labelMedium,
-                        ),
-                        SizedBox(height: screenHeight * 0.05),
-                        MembershipCard.portrait(
-                          user: UserModel(
-                              id: widget.userId, nickname: widget.nickname),
-                          textTheme: textTheme,
-                          showButton: false,
-                        ),
-                        SizedBox(height: screenHeight * 0.05),
-                      ],
+      child: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/completion_page_background.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          body: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                children: [
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 30),
+                          Text(
+                            "入信しました。",
+                            style: textTheme.headlineMedium,
+                          ),
+                          Text(
+                            "あなたはこれからスヤスヤ教として生きていくのです。",
+                            style: textTheme.labelMedium,
+                          ),
+                          SizedBox(height: screenHeight * 0.05),
+                          MembershipCard.portrait(
+                            user: UserModel(
+                                id: widget.userId, nickname: widget.nickname),
+                            textTheme: textTheme,
+                            showButton: false,
+                          ),
+                          SizedBox(height: screenHeight * 0.05),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 24),
-                  child: CustomButton(
-                    width: 225,
-                    height: 56,
-                    type: ButtonType.primary,
-                    text: "ホームへ",
-                    textStyle: textTheme.labelLarge,
-                    onPressed: () => context.go(HomePage.routeName),
-                    isLoading: false,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 24),
+                    child: CustomButton(
+                      width: 225,
+                      height: 56,
+                      type: ButtonType.primary,
+                      text: "ホームへ",
+                      textStyle: textTheme.labelLarge,
+                      onPressed: () => context.go(HomePage.routeName),
+                      isLoading: false,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

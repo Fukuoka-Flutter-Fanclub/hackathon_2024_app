@@ -83,7 +83,7 @@ class MembershipCard extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16.51),
               image: const DecorationImage(
-                image: AssetImage('assets/images/card_background.png'),
+                image: AssetImage('assets/images/membership_card.png'),
                 fit: BoxFit.cover,
               ),
             ),
