@@ -89,68 +89,84 @@ class MembershipCard extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            child: Padding(
-              padding: EdgeInsets.all(height * 0.07),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "ニックネーム",
-                          style: nicknameLabelStyle,
-                        ),
-                        Text(
-                          user.nickname,
-                          style: nicknameTextStyle,
-                        ),
-                      ],
+            child: Stack(
+              children: [
+                Positioned(
+                  left: height * 0.07,
+                  bottom: height * 0.35,
+                  child: SizedBox(
+                    width: height * 0.25,
+                    height: height * 0.3,
+                    child: Image.asset(
+                      'assets/images/user_icon.png',
+                      fit: BoxFit.fill, // または BoxFit.cover
                     ),
                   ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          "スヤリスト番号",
-                          style: idLabelStyle,
+                ),
+                Padding(
+                  padding: EdgeInsets.all(height * 0.07),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "ニックネーム",
+                              style: nicknameLabelStyle,
+                            ),
+                            Text(
+                              user.nickname,
+                              style: nicknameTextStyle,
+                            ),
+                          ],
                         ),
-                        const SizedBox(height: 4),
-                        Text(
-                          user.id,
-                          style: idTextStyle,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
+                      ),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              "スヤリスト番号",
+                              style: idLabelStyle,
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              user.id.substring(0, 20),
+                              style: idTextStyle,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                      showButton
+                          ? Align(
+                              alignment: Alignment.bottomRight,
+                              child: CustomButton(
+                                width: 147,
+                                height: 40,
+                                type: ButtonType.outline,
+                                text: "会員証を見せる",
+                                textStyle: textTheme.labelMedium,
+                                onPressed: onButtonPressed,
+                                isLoading: false,
+                              ),
+                            )
+                          : const SizedBox(
+                              width: 147,
+                              height: 40,
+                            )
+                    ],
                   ),
-                  showButton
-                      ? Align(
-                          alignment: Alignment.bottomRight,
-                          child: CustomButton(
-                            width: 147,
-                            height: 40,
-                            type: ButtonType.outline,
-                            text: "会員証を見せる",
-                            textStyle: textTheme.labelMedium,
-                            onPressed: onButtonPressed,
-                            isLoading: false,
-                          ),
-                        )
-                      : const SizedBox(
-                          width: 147,
-                          height: 40,
-                        )
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
