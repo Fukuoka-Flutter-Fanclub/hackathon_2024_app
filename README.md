@@ -18,10 +18,11 @@
 
 ## 開発環境 🛠
 
-- Flutter 3.5.3+
+- Flutter 3.24.3
 - バックエンド: Supabase
 - AI 対話: OpenAI API
 - 主要パッケージ:
+  - supabase_flutter(Supabase クライアント)
   - flutter_riverpod (状態管理)
   - go_router (画面遷移)
   - flutter_local_notifications (通知)
