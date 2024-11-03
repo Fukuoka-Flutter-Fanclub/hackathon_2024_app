@@ -56,7 +56,7 @@ class _CompletionPageState extends State<CompletionPage> {
                         children: [
                           const SizedBox(height: 30),
                           Text(
-                            "入信しました。",
+                            "入寝しました。",
                             style: textTheme.headlineMedium,
                           ),
                           Text(
