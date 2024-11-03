@@ -45,6 +45,17 @@ class _ChatPageState extends ConsumerState<ChatPage> {
             return const SizedBox.shrink();
           },
           showUserAvatars: true,
+          emptyState: Center(
+            child: SizedBox(
+              width: 300,
+              height: 300,
+              child: ClipOval(child: Image.asset('assets/images/icon.png')),
+            ),
+          ),
+          inputOptions: const InputOptions(
+            sendButtonVisibilityMode: SendButtonVisibilityMode.always,
+            autofocus: true,
+          ),
           theme: DefaultChatTheme(
             sendButtonIcon: SizedBox(
                 width: 36,
