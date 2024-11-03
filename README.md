@@ -13,7 +13,7 @@
 - **神のお告げ**: 就寝時間になると、安らぎの BGM と共に静かな眠りへ誘います
 - **祈りの言葉**: 睡眠導入のための音声ガイダンスで、心を落ち着かせます
 <div align="center">
-  <img src="assets/images/system.png" alt="スヤリストの仕組み" width="200"/>
+  <img src="assets/images/system.png" alt="スヤリストの仕組み"/>
 </div>
 
 ## 開発環境 🛠
