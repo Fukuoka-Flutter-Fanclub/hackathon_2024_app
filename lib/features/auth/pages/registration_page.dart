@@ -100,7 +100,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               style: textTheme.headlineMedium,
                             ),
                             Text(
-                              "スヤスヤ教に入信するためにあなたの名前を教えてください。",
+                              "スヤスヤ教に入寝するためにあなたの名前を教えてください。",
                               style: textTheme.labelMedium,
                             ),
                           ],
@@ -155,7 +155,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           width: 225,
                           height: 56,
                           type: ButtonType.primary,
-                          text: "入信する",
+                          text: "入寝する",
                           textStyle: textTheme.labelLarge,
                           onPressed: _isLoading ? null : _signInAnonymously,
                           isLoading: false,
