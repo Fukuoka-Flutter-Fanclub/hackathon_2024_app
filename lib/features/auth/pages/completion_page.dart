@@ -55,7 +55,7 @@ class _CompletionPageState extends State<CompletionPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "入信しました。",
+                            "入寝しました。",
                             style: textTheme.headlineMedium,
                           ),
                           Text(
