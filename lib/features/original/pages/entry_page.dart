@@ -23,13 +23,20 @@ class EntryPage extends StatelessWidget {
         ),
       ),
       child: Scaffold(
+        backgroundColor: Colors.transparent,
         body: SafeArea(
           child: Center(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Expanded(
-                  child: Image.asset('assets/images/entry.png'),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset('assets/images/entry.png'),
+                      Text('スヤスヤ教へようこそ', style: context.titleLarge),
+                    ],
+                  ),
                 ),
                 FilledButton.tonal(
                   onPressed: () {
