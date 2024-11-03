@@ -71,16 +71,13 @@ lib/
 ```
 
 ## ダウンロード 📲
+
 ### Test Flight
-<table>
-    <tr>
-        <td>
-            <a href="https://testflight.apple.com/join/U2Kp99fN"><img src="https://img.shields.io/badge/Download_on_the-App_Store-black.svg?style=for-the-badge&logo=apple" alt="App Store でダウンロード" width="200"></a>
-        <td>
-        <img src="assets/images/download_qr.png" alt="ダウンロード用QRコード" width="200">
-        </td>
-    </tr>
-</table>
+
+<div align="center">
+<img src="assets/images/download_qr.png" alt="ダウンロード用QRコード" width="200">
+<a href="https://testflight.apple.com/join/U2Kp99fN"><img src="https://img.shields.io/badge/Download_on_the-App_Store-black.svg?style=for-the-badge&logo=apple" alt="TestFlight でダウンロード" width="200"></a>
+</div>
 
 ---
 
