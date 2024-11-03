@@ -32,7 +32,17 @@ class EntryPage extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.asset('assets/images/entry.png'),
+                      const SizedBox(
+                        height: 80,
+                      ),
+                      SizedBox(
+                        width: 200,
+                        height: 200,
+                        child: Image.asset(
+                          'assets/images/entry.png',
+                          fit: BoxFit.contain,
+                        ),
+                      ),
                       Text('スヤスヤ教へようこそ', style: context.titleLarge),
                     ],
                   ),
