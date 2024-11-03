@@ -80,11 +80,11 @@ final routerProvider = Provider<GoRouter>((ref) {
             routes: <RouteBase>[
               // TODO(Minato): ここにチャットのルート
               GoRoute(
-                name: ChatScreen.routeName,
-                path: ChatScreen.routeName,
+                name: ChatPage.routeName,
+                path: ChatPage.routeName,
                 pageBuilder: (context, state) => const MaterialPage(
-                  name: ChatScreen.routeName,
-                  child: ChatScreen(),
+                  name: ChatPage.routeName,
+                  child: ChatPage(),
                 ),
               ),
             ],
