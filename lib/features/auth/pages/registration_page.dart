@@ -100,6 +100,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   child: Form(
                     key: _formKey,
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -112,53 +113,53 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               "スヤスヤ教に入寝するためにあなたの名前を教えてください。",
                               style: textTheme.labelMedium,
                             ),
+                            const SizedBox(height: 24),
+                            TextFormField(
+                              controller: _nameController,
+                              enabled: !_isLoading,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'ニックネームを入力してください';
+                                }
+                                if (value.length > 20) {
+                                  return 'ニックネームは20文字以内で入力してください';
+                                }
+                                return null;
+                              },
+                              decoration: InputDecoration(
+                                labelText: 'ニックネーム',
+                                labelStyle: TextStyle(
+                                  color: Colors.grey[700],
+                                ),
+                                hintText: '例）スヤリスト',
+                                hintStyle: const TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 16,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  borderSide: const BorderSide(
+                                    color: Colors.grey,
+                                    width: 1,
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  borderSide: const BorderSide(
+                                    color: Colors.grey,
+                                    width: 1,
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  borderSide: const BorderSide(
+                                    color: Colors.blue,
+                                    width: 1.5,
+                                  ),
+                                ),
+                              ),
+                            ),
                           ],
-                        ),
-                        const SizedBox(height: 24),
-                        TextFormField(
-                          controller: _nameController,
-                          enabled: !_isLoading,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'ニックネームを入力してください';
-                            }
-                            if (value.length > 20) {
-                              return 'ニックネームは20文字以内で入力してください';
-                            }
-                            return null;
-                          },
-                          decoration: InputDecoration(
-                            labelText: 'ニックネーム',
-                            labelStyle: TextStyle(
-                              color: Colors.grey[700],
-                            ),
-                            hintText: '例）スヤリスト',
-                            hintStyle: const TextStyle(
-                              color: Colors.grey,
-                              fontSize: 16,
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              borderSide: const BorderSide(
-                                color: Colors.grey,
-                                width: 1,
-                              ),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              borderSide: const BorderSide(
-                                color: Colors.grey,
-                                width: 1,
-                              ),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              borderSide: const BorderSide(
-                                color: Colors.blue,
-                                width: 1.5,
-                              ),
-                            ),
-                          ),
                         ),
                         CustomButton(
                           width: 225,

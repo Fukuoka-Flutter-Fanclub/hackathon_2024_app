@@ -46,6 +46,23 @@ class HomePage extends ConsumerWidget {
                     ),
                     const SizedBox(height: 16),
                     _buildMembershipCard(context, user, textTheme),
+                    const SizedBox(height: 50),
+                    Align(
+                      alignment: Alignment.center,
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Image.asset(
+                            'assets/images/Vector.png',
+                            fit: BoxFit.contain,
+                          ),
+                          Image.asset(
+                            'assets/images/text.png',
+                            fit: BoxFit.contain,
+                          ),
+                        ],
+                      ),
+                    )
                   ],
                 ),
               ),
