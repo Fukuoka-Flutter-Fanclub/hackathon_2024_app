@@ -8,10 +8,6 @@ class SettingSwitch extends _$SettingSwitch {
   bool build() => false;
 
   void changeBool() {
-    if (state == false) {
-      state = true;
-    } else {
-      state = false;
-    }
+    state = !state;
   }
 }
