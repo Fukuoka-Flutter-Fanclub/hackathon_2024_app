@@ -15,5 +15,11 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit",
     "source.organizeImports": "explicit"
-  }
+  },
+  "cSpell.words": [
+    "Cupertino",
+    "hakkason",
+    "riverpod",
+    "supabase"
+  ]
 }

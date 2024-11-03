@@ -78,7 +78,6 @@ final routerProvider = Provider<GoRouter>((ref) {
           StatefulShellBranch(
             navigatorKey: _chatTabNavigatorKey,
             routes: <RouteBase>[
-              // TODO(Minato): ここにチャットのルート
               GoRoute(
                 name: ChatPage.routeName,
                 path: ChatPage.routeName,

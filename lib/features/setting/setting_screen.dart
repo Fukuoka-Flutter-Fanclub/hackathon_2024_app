@@ -94,7 +94,7 @@ class TimeSettingMockItem extends ConsumerWidget {
           CupertinoSwitch(
             value: false,
             onChanged: (value) {
-              print('ただのデモなので何もしない');
+              debugPrint('ただのデモなので何もしない');
             },
           ),
         ],
