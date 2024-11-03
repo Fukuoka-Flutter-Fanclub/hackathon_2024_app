@@ -17,7 +17,7 @@ class AudioButton extends ConsumerWidget {
         try {
           playMethod();
         } catch (e) {
-          print(e);
+          debugPrint(e.toString());
         }
       },
       child: Text(text),
