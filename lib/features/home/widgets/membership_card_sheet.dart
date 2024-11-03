@@ -92,26 +92,31 @@ class _MembershipCardSheetState extends State<MembershipCardSheet> {
                                   Text(
                                     "スヤリストとは",
                                     style: textTheme.labelSmall,
+                                    overflow: TextOverflow.visible,
                                   ),
                                   const SizedBox(height: 12),
                                   Text(
                                     "スヤスヤ教を信じる人たちである。",
                                     style: textTheme.labelSmall,
+                                    overflow: TextOverflow.visible,
                                   ),
                                   const SizedBox(height: 12),
                                   Text(
                                     "教義",
                                     style: textTheme.labelSmall,
+                                    overflow: TextOverflow.visible,
                                   ),
                                   const SizedBox(height: 8),
                                   Text(
                                     "「ちゃんと寝ろ」\n「睡眠時間を増やせ」",
                                     style: textTheme.labelSmall,
+                                    overflow: TextOverflow.visible,
                                   ),
                                   const SizedBox(height: 12),
                                   Text(
                                     "神聖な睡眠時間を奪うような面倒事は断る場合がございます。",
                                     style: textTheme.labelSmall,
+                                    overflow: TextOverflow.visible,
                                   ),
                                 ],
                               ),
