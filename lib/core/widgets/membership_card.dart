@@ -93,10 +93,10 @@ class MembershipCard extends StatelessWidget {
               children: [
                 Positioned(
                   left: height * 0.07,
-                  bottom: height * 0.35,
+                  bottom: height * 0.2,
                   child: SizedBox(
-                    width: height * 0.25,
-                    height: height * 0.3,
+                    width: height * 0.35,
+                    height: height * 0.45,
                     child: Image.asset(
                       'assets/images/user_icon.png',
                       fit: BoxFit.fill, // または BoxFit.cover
