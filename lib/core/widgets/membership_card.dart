@@ -28,12 +28,14 @@ class MembershipCard extends StatelessWidget {
 
   factory MembershipCard.landscape({
     required UserModel user,
+    double? width,
+    double? height,
     TextTheme? textTheme,
   }) {
     return MembershipCard(
       user: user,
-      width: 471.83,
-      height: 282.0,
+      width: width ?? 470.0,
+      height: height ?? 282.0,
       showButton: false,
       nicknameTextStyle: textTheme?.headlineSmall,
       nicknameLabelStyle: textTheme?.titleLarge?.copyWith(

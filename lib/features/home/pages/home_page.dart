@@ -33,10 +33,14 @@ class HomePage extends ConsumerWidget {
                         Text(
                           "おかえり、${user.nickname}",
                           style: textTheme.headlineMedium,
+                          softWrap: true,
+                          overflow: TextOverflow.visible,
                         ),
                         Text(
                           "すやりすととしての活動を行いましょう",
                           style: textTheme.labelMedium,
+                          softWrap: true,
+                          overflow: TextOverflow.visible,
                         ),
                       ],
                     ),
