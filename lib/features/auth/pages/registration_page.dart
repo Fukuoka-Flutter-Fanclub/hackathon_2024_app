@@ -45,6 +45,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
             CompletionPage.routeName,
             extra: {
               'userId': response.user!.id,
+              'nickname': _nameController.text.trim(),
             },
           );
         } catch (dbError) {
@@ -78,16 +79,24 @@ class _RegistrationPageState extends State<RegistrationPage> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+
     return Focus(
       focusNode: _focusNode,
       child: Stack(
         children: [
-          Scaffold(
-            body: SafeArea(
-              child: SingleChildScrollView(
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                    'assets/images/registration_page_background.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Scaffold(
+              backgroundColor: Colors.transparent,
+              body: SafeArea(
                 child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 30),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Form(
                     key: _formKey,
                     child: Column(

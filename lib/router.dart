@@ -53,7 +53,8 @@ final routerProvider = Provider<GoRouter>((ref) {
           final Map<String, dynamic> extra =
               state.extra as Map<String, dynamic>;
           final userId = extra['userId'] as String;
-          return CompletionPage(userId: userId);
+          final nickname = extra['nickname'] as String;
+          return CompletionPage(userId: userId, nickname: nickname);
         },
       ),
       StatefulShellRoute.indexedStack(
