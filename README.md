@@ -70,6 +70,18 @@ lib/
 └── main.dart      # エントリー
 ```
 
+ダウンロード 📲
+
+<table>
+    <tr>
+        <td>
+            <a href="https://testflight.apple.com/join/U2Kp99fN"><img src="https://img.shields.io/badge/Download_on_the-App_Store-black.svg?style=for-the-badge&logo=apple" alt="App Store でダウンロード" width="200"></a>
+        <td>
+        <img src="assets/images/download_qr.png" alt="ダウンロード用QRコード" width="200">
+        </td>
+    </tr>
+</table>
+
 ---
 
 「良き眠りは、魂の安息なり」
