@@ -15,6 +15,8 @@ enum MyColors {
   black1000(color: Color(0xff0C0C0C)),
   // primary
   primaryMain(color: Color(0xff000F9F)),
+  // secondary
+  secondaryMain(color: Color(0x1A4BADF3)),
   ;
 
   const MyColors({required this.color});
